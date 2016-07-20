@@ -4,6 +4,6 @@ const GoogleTrendsController = require('./google-trends.controller');
 
 // Define API routes to /googletrends
 
-GoogleTrendsRouter.get('/', GoogleTrendsController.get);
+GoogleTrendsRouter.get('/googletrends', GoogleTrendsController.get);
 
 module.exports = GoogleTrendsRouter;
