@@ -9,7 +9,8 @@ class SentimentTrends extends Component {
     super(props);
 
     this.state = {
-      data: this.props.sentimentData
+      data: this.props.sentimentData,
+      xAxis: 1
     }
   }
 

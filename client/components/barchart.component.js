@@ -3,9 +3,8 @@ import { VictoryPie, VictoryChart, VictoryLine, VictoryBar, VictoryStack, Victor
 
 class CentralAxis extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
-
 
   render() {
     return (
@@ -51,20 +50,19 @@ class CentralAxis extends Component {
                   "gold" : "blue"
               }
             }}
-            data={[
-              {x: 1, y: -0.51, label:'EMPLOYMENT'},
-              {x: 2, y: -0.2, label: 'ECONOMY'},
-              {x: 3, y: -0.06, label: 'BUSINESS CONDITIONS'},
-              {x: 4, y: 0.13, label: 'GOLD'},
-              {x: 5, y: 0.46, label: 'CONSUMER SPENDING'},
-              {x: 6, y: 0.52, label: 'INCOME'},
-              {x: 7, y: 0.9, label: 'RESTAURANTS'},
-            ]}
+            data={this.props.data.map(function(obj, idx) {
+                
+              return {
+                x: 1+idx,
+                y: + obj.sentimentScore,
+                label: obj.newsTopic.toUpperCase()
+              }
+            })}
           />   
         </VictoryChart>
-        
 
       </svg>
+
       // </div>
     );
   }
