@@ -21244,19 +21244,15 @@
 	      //     console.log(err);
 	      //   });
 
-	      ////////NEWS SENTIMENT////////
-	      // fetch('api/news/sentiment', {method: 'GET'})
-	      //   .then((res) => {
-	      //     console.log('fetch is working. Response:',res)
-	      //     return res.json();
-	      //   })
-	      //   .then((data) => {
-	      //     this.setState({sentimentData: data});
-	      //
-	      //   })
-	      //   .catch((err) => {
-	      //     console.log(err);
-	      //   });
+	      //////NEWS SENTIMENT////////
+	      fetch('api/news/sentiment', { method: 'GET' }).then(function (res) {
+	        console.log('fetch is working. Response:', res);
+	        return res.json();
+	      }).then(function (data) {
+	        _this2.setState({ sentimentData: data });
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -51189,23 +51185,78 @@
 	  value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _linechart = __webpack_require__(176);
+
+	var _linechart2 = _interopRequireDefault(_linechart);
+
+	var _barchart = __webpack_require__(181);
+
+	var _barchart2 = _interopRequireDefault(_barchart);
+
+	var _victory = __webpack_require__(177);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var SentimentTrends = function SentimentTrends(props) {
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	  return(
-	    // insert jsx here
-	    _react2.default.createElement(
-	      'h2',
-	      null,
-	      'Sentiment Chart'
-	    )
-	  );
-	};
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SentimentTrends = function (_Component) {
+	  _inherits(SentimentTrends, _Component);
+
+	  function SentimentTrends(props) {
+	    _classCallCheck(this, SentimentTrends);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SentimentTrends).call(this, props));
+
+	    _this.state = {
+	      data: _this.props.sentimentData,
+	      xAxis: 1
+	    };
+	    return _this;
+	  }
+
+	  _createClass(SentimentTrends, [{
+	    key: 'render',
+	    value: function render() {
+	      console.log('props:', this.props.sentimentData);
+	      if (!this.props.sentimentData) {
+	        return _react2.default.createElement(
+	          'p',
+	          null,
+	          'Loading Sentiment Data...'
+	        );
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'sentiment-chart' },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Consumer/Economic Sentiment - News in Past Two Months'
+	        ),
+	        _react2.default.createElement(_barchart2.default, {
+	          data: this.props.sentimentData,
+	          x: 'newsTopic',
+	          y: 'sentimentScore',
+	          height: 300,
+	          width: 500
+	        })
+	      );
+	    }
+	  }]);
+
+	  return SentimentTrends;
+	}(_react.Component);
 
 	exports.default = SentimentTrends;
 
@@ -51293,6 +51344,118 @@
 	}(_react.Component);
 
 	exports.default = TwitterChart;
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _victory = __webpack_require__(177);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var CentralAxis = function (_Component) {
+	  _inherits(CentralAxis, _Component);
+
+	  function CentralAxis(props) {
+	    _classCallCheck(this, CentralAxis);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(CentralAxis).call(this, props));
+	  }
+
+	  _createClass(CentralAxis, [{
+	    key: 'render',
+	    value: function render() {
+	      var _React$createElement;
+
+	      return(
+	        // <div className='bar-chart'>
+	        _react2.default.createElement(
+	          'svg',
+	          { width: 500, height: 350 },
+	          _react2.default.createElement(
+	            _victory.VictoryChart,
+	            (_React$createElement = { horizontal: true,
+	              height: 350,
+	              width: 500,
+	              padding: 40,
+	              domain: { x: [-1.2, 1.2], y: [0, 7] },
+	              style: {
+	                data: { width: 50 },
+	                labels: { fontSize: 12 }
+	              }
+	            }, _defineProperty(_React$createElement, 'padding', {
+	              top: 20,
+	              bottom: 60,
+	              left: 20,
+	              right: 20
+	            }), _defineProperty(_React$createElement, 'domainPadding', { x: 15 }), _React$createElement),
+	            _react2.default.createElement(_victory.VictoryAxis, {
+	              label: 'Sentiment',
+	              orientation: 'bottom' }),
+	            _react2.default.createElement(_victory.VictoryAxis, {
+	              domain: { y: [0, 5] },
+	              tickValues: [-1, -0.75, -0.5, -.25, 0, .25, .50, .75, 1],
+	              style: {
+	                labels: { fontSize: 9 },
+	                grid: {
+	                  stroke: "grey",
+	                  strokeWidth: 1
+	                },
+	                axis: { stroke: "transparent" },
+	                ticks: { stroke: "transparent" }
+	              } }),
+	            _react2.default.createElement(_victory.VictoryBar, { horizontal: true,
+	              style: {
+	                data: {
+	                  width: 17,
+	                  labels: { padding: 5, fontSize: 10 },
+	                  fill: function fill(data) {
+	                    return data.y > 0 ? "gold" : "blue";
+	                  }
+	                }
+	              },
+	              data: this.props.data.map(function (obj, idx) {
+
+	                return {
+	                  x: 1 + idx,
+	                  y: +obj.sentimentScore,
+	                  label: obj.newsTopic.toUpperCase()
+	                };
+	              })
+	            })
+	          )
+	        )
+
+	        // </div>
+
+	      );
+	    }
+	  }]);
+
+	  return CentralAxis;
+	}(_react.Component);
+
+	exports.default = CentralAxis;
 
 /***/ }
 /******/ ]);
