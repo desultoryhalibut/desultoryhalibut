@@ -44,7 +44,6 @@ class SummaryComponent extends Component {
     //////NEWS SENTIMENT////////
     fetch('api/news/sentiment', {method: 'GET'})
       .then((res) => {
-        console.log('fetch is working. Response:',res)
         return res.json();
       })
       .then((data) => {

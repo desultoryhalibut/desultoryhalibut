@@ -21246,7 +21246,6 @@
 
 	      //////NEWS SENTIMENT////////
 	      fetch('api/news/sentiment', { method: 'GET' }).then(function (res) {
-	        console.log('fetch is working. Response:', res);
 	        return res.json();
 	      }).then(function (data) {
 	        _this2.setState({ sentimentData: data });
@@ -51227,7 +51226,6 @@
 	  _createClass(SentimentTrends, [{
 	    key: 'render',
 	    value: function render() {
-	      console.log('props:', this.props.sentimentData);
 	      if (!this.props.sentimentData) {
 	        return _react2.default.createElement(
 	          'p',
@@ -51427,7 +51425,7 @@
 	            _react2.default.createElement(_victory.VictoryBar, { horizontal: true,
 	              style: {
 	                data: {
-	                  width: 17,
+	                  width: 25,
 	                  labels: { padding: 5, fontSize: 10 },
 	                  fill: function fill(data) {
 	                    return data.y > 0 ? "gold" : "blue";

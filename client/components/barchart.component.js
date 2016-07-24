@@ -44,7 +44,7 @@ class CentralAxis extends Component {
           <VictoryBar horizontal
             style={{
               data: {
-                width: 17,
+                width: 25,
                 labels: { padding: 5, fontSize:10 },
                 fill: (data) => data.y > 0 ?
                   "gold" : "blue"

@@ -16,7 +16,6 @@ class SentimentTrends extends Component {
 
 
   render() {
-    console.log('props:',this.props.sentimentData)
     if (!this.props.sentimentData) {
       return (
         <p>Loading Sentiment Data...</p>
