@@ -3,7 +3,7 @@ var NewsSentimentRouter = require('../sentiment/news-sentiment-router');
 var GoogleTrendsRouter = require('../googletrends/google-trends.routes');
 var path = require('path');
 
-// var TwitterRouter = require('../twitter/twitter-router');
+var TwitterRouter = require('../twitter/twitter-router');
 // var sentimentRouter = require('../sentiment/sentiment-router');
 // var financeRouter = require('../finance/finance-router')
 
@@ -15,7 +15,8 @@ module.exports = function(app) {
 
   app.use('/api/news', NewsRouter);
   app.use('/api/news/sentiment', NewsSentimentRouter);
-  app.use('/api', GoogleTrendsRouter);  //should be api/google?
+  app.use('/api/googletrends', GoogleTrendsRouter);  //should be api/google?
+  app.use('/api/twitter', TwitterRouter);
 
   // app.get('/', function(req, res) {
   //   res.sendFile(path.join(__dirname,  '../../client/www/index.html'));

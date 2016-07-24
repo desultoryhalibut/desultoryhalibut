@@ -31,53 +31,10 @@ app.use(webpackDevMiddleware(compiler, {
   historyApiFallback: true,
 }));
 
-var server = app.listen(3000, function() {
+var server = app.listen(3001, function() {
   var host = server.address().address;
   var port = server.address().port;
   console.log('app listening at host, port:', host, port);
 });
 
-
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////
-// This code generates sample data.
-////////////////////////////////////////////////////////////////
-var queries = ['lululemon', 'nike', 'gold', 'unemployment'];
-var numQueries = queries.length;
-var quantity = 1000;
-
-var entries = [];
-
-for (var i = 0; i < quantity; i++) {
-    var rand1 = Math.random();
-    var rand2 = Math.random();
-
-    var sentiment = {
-        "topic": queries[ i % queries.length ],
-        "volume": (rand2 * 1000) + 100,
-        "score": (rand1 * 5) - (rand2 * 5),
-        "time": Math.floor(i / queries.length)
-    }
-
-    entries.push(sentiment)
-}
-//////////////////////////////////////////////////////////
-for (var i = 0; i < entries.length; i++) {
-     // not sure what the name of our collection is
-     var twitterSent = new tSentiment({
-       topic: entries[i].topic,
-       volume: entries[i].volume,
-       score: entries[i].score,
-       interval: entries[i].time
-     });
-     twitterSent.save();
- }
-
-
-// twitterStream.twitterConnect();
 module.exports = app;
