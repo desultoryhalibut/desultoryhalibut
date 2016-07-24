@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const newsSchema = new Schema({
-  timestamp: { type: Date, required: true },
-  title: { type: String, required: true, unique: true }
+  data: { type: Array, required: true },
+  hits: { type: Number, required: true },
+  keyword: { type: String, required: true },
 })
 
 // newsSchema.set('timestamps', true);
