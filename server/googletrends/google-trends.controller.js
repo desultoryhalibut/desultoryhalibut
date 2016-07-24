@@ -17,8 +17,8 @@ module.exports = {
   // finish this routing
   getCompany: function(req, res) {
     console.log('getCOmpany', req.url);
-    let pos = req.url.lastIndexOf('/');
-    let company = req.url.substring(pos + 1, req.url.length);
+    const pos = req.url.lastIndexOf('/');
+    const company = req.url.substring(pos + 1, req.url.length);
 
     googleTrends.trendData(company)
       .then(function(results) {
