@@ -3,11 +3,11 @@ import { VictoryPie, VictoryChart, VictoryLine, VictoryAxis } from 'victory';
 
 // LineChart component to be reused for Google Trends chart
 
+
 class LineChart extends Component {
 
   constructor(props) {
     super(props);
-    console.log(this.computeDomain());
   }
 
   computeDomain() {
@@ -22,9 +22,11 @@ class LineChart extends Component {
 
   render() {
     return (
+
       <div>
         <h3>Google Searches for {this.props.keyword}</h3>
         <svg width={this.props.width} height={this.props.height}>
+
           <VictoryLine
             data={this.props.data}
             x={this.props.x}
@@ -40,6 +42,7 @@ class LineChart extends Component {
               }
             }}
           />
+
           <VictoryAxis
             height={this.props.height}
             width={this.props.width}
@@ -69,6 +72,7 @@ class LineChart extends Component {
             }}
           />
         </svg>
+
       </div>
     );
   }

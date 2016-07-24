@@ -8,7 +8,8 @@ class GoogleTrends extends Component {
 
     this.state = {
       currentChart: 'car',
-      data: this.props.googleTrendsData
+      data: this.props.googleTrendsData,
+      companyGoogleTrendsData: this.props.companyGoogleTrendsData
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -16,6 +17,10 @@ class GoogleTrends extends Component {
 
   handleClick(event) {
     this.setState({currentChart: event.target.value});
+  }
+
+  renderChart(index, color) {
+
   }
 
   render() {
@@ -60,14 +65,41 @@ class GoogleTrends extends Component {
     }
 
     return (
+<<<<<<< HEAD
+      <section className="google-trends">
+        <div className="row">
+          <div className="col-md-8">
+            <nav className="google-trends-nav">
+              <button onClick={this.handleClick} value="car" className="btn btn-primary waves-effect">Car</button>
+              <button onClick={this.handleClick} value="dow jones" className="btn btn-primary waves-effect">Dow Jones</button>
+              <button onClick={this.handleClick} value="hedge" className="btn btn-primary waves-effect">Hedge</button>
+            </nav>
+
+            <article>
+              {partial}
+            </article>
+          </div>
+=======
       <div className="google-trends-chart">
-        <button onClick={this.handleClick} value="car">Car</button>
-        <button onClick={this.handleClick} value="dow jones">Dow Jones</button>
-        <button onClick={this.handleClick} value="hedge">Hedge</button>
-
+        <h2>Google Trends Overview</h2>
+        <nav className="google-trends-nav">
+          <button onClick={this.handleClick} value="car">Car</button>
+          <button onClick={this.handleClick} value="dow jones">Dow Jones</button>
+          <button onClick={this.handleClick} value="hedge">Hedge</button>
+        </nav>
+        <article>
           {partial}
+        </article>
+>>>>>>> master
 
-      </div>
+          <div className="google-summary col-md-4 card card-block">
+            <p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+            dummy text ever since the <span className="stand-out">1500</span>s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+            </p>
+          </div>
+        </div>
+      </section>
     );
   }
 

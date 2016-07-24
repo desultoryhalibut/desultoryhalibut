@@ -2,12 +2,16 @@
     box-sizing: border-box;
 }
 body {
-  background: #f5ead6;
+
+  background: $light-gray;
+  font-size: 14px;
 }
-.center-content {
-  max-width: 1240px;
-  margin: 0 auto;
+
+footer {
+  background: $alpha-gray;
+  min-height: 150px;
 }
+
 header {
   border-bottom: 1px solid $border-color;
   background: $white;
@@ -26,6 +30,19 @@ header {
     }
   }
 }
+
+section {
+  padding: 2em;
+}
+
+.center-content {
+  margin: 0 auto;
+}
+
+.footer-head {
+  min-height: 2em;
+}
+
 .trends {
   border: 1px solid $border-color;
   background: $white;
@@ -33,7 +50,7 @@ header {
   max-width: 410px;
   margin-right: 0 !important;
   article {
-    margin: 5px;
+    margin: 0px;
     height: 170px;
     padding: 15px 0;
   }
@@ -50,11 +67,29 @@ header {
 }
 
 .graph {
-  width: 600px;
-  height: 380px;
+  max-width: 600px;
+  min-height: 380px;
   background: $white;
-  margin-right: 20px;
+  margin-right: 2em;
   border: 1px solid $border-color;
+}
+
+.google-trends {
+  .graph {
+    min-height: 300px;
+  }
+  .google-summary {
+    padding: 0 0 0 50px;
+  }
+}
+
+.header-image {
+  width: 100%
+}
+
+.main-content {
+  background: $tan;
+  padding: 2em 3em 2em 3em;
 }
 
 .results-copy {
@@ -62,47 +97,43 @@ header {
   font-size: 30px;
 }
 
-section {
-  padding: 0 0 40px;
-}
-.google-trends {
-  .graph {
-    height: 300px;
-  }
-  .google-summary {
-    padding: 0 0 0 50px;
-  }
-}
-
 .sentiments {
   .graph {
-    height: 300px;
+    min-height: 300px;
   }
 }
 
 
 // Helper Classes
 .section-headline {
-  color: $black;
-  background: $white;
-  padding-top: 15px;
-  margin-bottom: 35px;
+  background: $alpha-orange;
+  color: $white;
+  padding: 2em;
+
   h3 {
     line-height: 0.85714285714286em;
+    font-size: 3em;
+    font-weight: 400;
+    text-transform: uppercase;
   }
 }
+
 .orange {
   background: $alpha-orange;
 }
+
 .red {
   background: $alpha-red;
 }
+
 .gray {
   background: $alpha-gray;
 }
+
 .brown {
   background:$alpha-brown;
 }
+
 .stand-out {
   font-size: 30px;
   color: $alpha-red;

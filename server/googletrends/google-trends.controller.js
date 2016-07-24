@@ -15,11 +15,14 @@ module.exports = {
   },
 
   // finish this routing
-  getCompany: function(company, req, res) {
+  getCompany: function(req, res) {
+    console.log('getCOmpany', req.url);
+    let pos = req.url.lastIndexOf('/');
+    let company = req.url.substring(pos + 1, req.url.length);
 
     googleTrends.trendData(company)
       .then(function(results) {
-
+        console.log('getCompanyGoogle' + company, 'results ', results);
         res.json(results);
       })
       .catch(function(err) {
