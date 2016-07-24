@@ -1,9 +1,9 @@
 // API Keys
 // Twitter API
-process.env['twitter_key'] = 'URBt6LanYTUDnvzmQEAQMId0F';
-process.env['twitter_secret'] = 'qXOqcFMImuA0Zi09z8yzzFDJGRHvIVUiWlUiVlqPuZru6cwKgc';
-process.env['twitter_token_key'] = '3232137186-rdbsH7cp39IENWqSbeYbjQq5Q4PBOVCFpJ0hgjz';
-process.env['twitter_token_secret'] = 'myufOQRWeSnxkNzkWEA7iDHDjOAWUsK7nP9yqwVLKzBqO';
+process.env['consumer_key'] = 'URBt6LanYTUDnvzmQEAQMId0F';
+process.env['consumer_secret'] = 'qXOqcFMImuA0Zi09z8yzzFDJGRHvIVUiWlUiVlqPuZru6cwKgc';
+process.env['access_token'] = '3232137186-rdbsH7cp39IENWqSbeYbjQq5Q4PBOVCFpJ0hgjz';
+process.env['access_token_secret'] = 'myufOQRWeSnxkNzkWEA7iDHDjOAWUsK7nP9yqwVLKzBqO';
 
 // Watsom API
 process.env["url"] = "https://gateway-a.watsonplatform.net/calls";
