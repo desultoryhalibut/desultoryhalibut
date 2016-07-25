@@ -6,7 +6,6 @@ const News = require('../news/news-model');
 const request = require('request');
 const config = require('../config/config');
 const watson = require('watson-developer-cloud');
-const Promise = require('bluebird');
 const helper = require('../config/utils')
 
 // future CronJob implementation to run monthly
@@ -23,7 +22,7 @@ const KEYWORDS = ['car', 'real estate agent', 'inflation', 'restaurant', 'unempl
 function reformatTrendsData(trendsData) {
    return trendsData.map(item => {
      for (var key in item) {
-       let obj = {};
+       const obj = {};
        obj['date'] = key;
        obj['volume'] = item[key];
        return obj;
@@ -38,9 +37,9 @@ function reformatTrendsData(trendsData) {
   */
 
 function queryGoogleTrends(key, googleTrendResults) {
-  let reformatData = reformatTrendsData(googleTrendResults);
+  const reformatData = reformatTrendsData(googleTrendResults);
 
-  let newData = {
+  const newData = {
     'keyword': key,
     'searchVolume': reformatData
   };
@@ -87,7 +86,7 @@ googleTrends.trendData(KEYWORDS)
       api_key: process.env.apikey
     });
 
-    let paramsNews = {
+    const paramsNews = {
       start: 'now-60d',
       end: 'now',
       rank: 'high',
@@ -95,7 +94,8 @@ googleTrends.trendData(KEYWORDS)
       'q.enriched.url.enrichedTitle.keywords.keyword.text': 'unemployment^inflation^real estate^acquisition^restaurants^dow jones^economy^panic',
       return: 'enriched.url.title'
     };
-    let paramsSentiment = {
+
+    const paramsSentiment = {
 
       targets: ['inflation','unemployment','real estate', 'acquisition','restaurants','dow jones','economy']
     };
@@ -126,7 +126,7 @@ googleTrends.trendData(KEYWORDS)
     //Grab data from alchemy news API using target keywords
     alchemyGetNews(paramsNews)
       .then(function(news) {
-        let newsArray = news.result.docs;
+        const newsArray = news.result.docs;
         newsArray = newsArray.map(function(val) {
           return {
             timestamp: helper.timeConverter(val.timestamp),
@@ -163,4 +163,4 @@ googleTrends.trendData(KEYWORDS)
         .catch(function(err) {
           console.log(err);
         })
-      });
+      })

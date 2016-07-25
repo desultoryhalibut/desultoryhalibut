@@ -1,5 +1,3 @@
-
-// require('./config/config.js')
 // Config routing and database for news and sentiment APIs
 var express = require('express');
 var twitterStream = require('./twitter/twitter-controller');
@@ -8,6 +6,11 @@ var webpack = require('webpack');
 var webpackConfig = require('../webpack.config.js');
 var tSentiment = require('./sentiment/twitter-sentiment-model');
 var app = express();
+var twitterCron = require('./workers/workers-twitter');
+var CronJob = require('cron').CronJob;
+new CronJob('*/5 * * * * *', function() {
+  twitterCron.getCollections(twitterCron.channels);
+}, null, true, 'America/Los_Angeles');
 
 var compiler = webpack(webpackConfig);
 

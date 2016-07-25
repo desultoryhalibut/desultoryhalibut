@@ -4,8 +4,7 @@ const mongoose = require('mongoose');
 var uri = 'mongodb://QuinKinser:Ron1680.@ds031608.mlab.com:31608/leaderboards';
 db = mongoose.connect(uri);
 
-const interval = 60000;
-const previousDate = Date.now() - interval;
+
 
 const channels = {
   'nintendo' : ['nintendo'],
@@ -52,7 +51,9 @@ const averageTweets = function(tweets, topic) {
 
 
 var findTweet = function(topic){
-
+  const interval = 60000;
+  const previousDate = Date.now() - interval;
+  console.log(previousDate);
   twitterModels.Tweet.find({tag: topic, time: {$gte: previousDate}}, function(err, tweets) {
     if(err) {
       console.log(err);
@@ -70,4 +71,7 @@ const getCollections = function(channels) {
   }
 };
 
-getCollections(channels);
+module.exports = {
+  getCollections: getCollections,
+  channels: channels
+};
