@@ -28,22 +28,7 @@ class SummaryComponent extends Component {
         console.log(err);
       });
 
-      ////////NEWS VOLUME////////
-    // fetch('api/news', {method: 'GET'})
-    //   .then((res) => {
-    //     return res.json();
-    //   })
-    //   .then((data) => {
-    //     this.setState({newsData: data});
-    //
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-
-
-    //////NEWS SENTIMENT////////
-    fetch('api/news/sentiment', {method: 'GET'})
+    fetch('api/news', {method: 'GET'})
       .then((res) => {
         return res.json();
       })
@@ -84,7 +69,7 @@ class SummaryComponent extends Component {
 
         <div className="row">
           <div className="section-headline col-md-12">
-            <h3 className="ta-center">Market Sentiment</h3>
+            <h3 className="ta-center">Sentiment Analysis in Financial News</h3>
           </div>
         </div>
 
