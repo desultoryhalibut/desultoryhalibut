@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import GoogleTrends from './googletrends.component';
 import SentimentTrends from './sentiment.component';
+import NewsTrends from './news.component';
+
 import TwitterChart from './twitter.component';
+import TwitterLiveSummary from './twitter-live-summary.component';
+import TwitterLive from './twitter-live.component';
 
 class SummaryComponent extends Component {
   constructor(props) {
@@ -10,11 +14,27 @@ class SummaryComponent extends Component {
     this.state = {
       googleTrendsData: null,
       newsData: null,
-      sentimentData: null
+      sentimentData: null,
+      twitterData: null
     };
 
+    this.fetchTweets = this.fetchTweets.bind(this);
   }
 
+  fetchTweets () {
+    var self = this;
+      fetch('api/twitter', {method: 'GET'})
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log('SETTINGSTATE', data);
+        this.setState({twitterData: data}).bind(self);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   componentWillMount() {
     fetch('api/googletrends', {method: 'GET'})
       .then((res) => {
@@ -45,7 +65,7 @@ class SummaryComponent extends Component {
     //////NEWS SENTIMENT////////
     fetch('api/news/sentiment', {method: 'GET'})
       .then((res) => {
-        console.log('fetch is working. Response:',res)
+        //console.log('fetch is working. Response:',res)
         return res.json();
       })
       .then((data) => {
@@ -56,6 +76,22 @@ class SummaryComponent extends Component {
         console.log(err);
       });
 
+    fetch('api/twitter', {method: 'GET'})
+      .then((res) => {
+        // console.log('twitter fetch working. Response:',res)
+        return res.json();
+      })
+      .then((data) => {
+        this.setState({twitterData: data});
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  }
+
+  componentDidMount(){
+    setInterval(this.fetchTweets, 10000);
   }
 
 
@@ -70,10 +106,11 @@ class SummaryComponent extends Component {
         <div className="row">
           <div className="section-headline col-md-12">
             <h3 className="ta-center"><i className="fa fa-twitter" aria-hidden="true"></i>What's Tweeting</h3>
+            <TwitterLiveSummary twitterData={this.state.twitterData} currentCompany={this.state.currentCompany}/>
+            <TwitterChart twitterData={this.state.twitterData} currentCompany={this.state.currentCompany}/>
+            <TwitterLive twitterData={this.state.twitterData} currentCompany={this.state.currentCompany}/>
           </div>
         </div>
-
-        <TwitterChart currentCompany={this.state.currentCompany}/>
 
         <div className="row">
           <div className="section-headline col-md-12">
@@ -99,7 +136,10 @@ class SummaryComponent extends Component {
             Footer text goes here
           </div>
         </div>
+      <div>
+        <NewsTrends newsData={this.state.newsData} />
       </div>
+    </div>
     );
   }
 }
