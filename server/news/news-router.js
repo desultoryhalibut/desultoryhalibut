@@ -4,7 +4,7 @@ const NewsRouter = require('express').Router();
 
 NewsRouter.get('/', NewsController.getFromDB);
 NewsRouter.get('/dataset/:search', NewsController.searchAPI);
-NewsRouter.get('/dataset/', NewsController.getFromAPI);
+NewsRouter.get('/dataset/', NewsController.getFromNewsAPI);
 NewsRouter.get('/getSentiment/', NewsController.alchemyGetSentiment);
 
 

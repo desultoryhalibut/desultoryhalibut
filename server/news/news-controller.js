@@ -20,16 +20,7 @@ module.exports = {
   getFromDB: function(req, res) {  //relative route from api/news-model
     News.find().exec()
     .then(function(news) {
-      console.log('searching database:', news);
-      var results = { keyword: news.keyword };
-      var n = news[9].data.reduce(function(prev, cur) {
-        return prev += '. ' + cur.headline.main;
-      }, '');
-      results = {
-        string: n,
-        keyword: news[9].keyword
-      } 
-      res.send(results);
+      res.send(news);
     })
     .catch(function(err) {
       console.error(err);
@@ -44,7 +35,7 @@ module.exports = {
       qs: {
         'api-key': "cd2a0ddca6c645b38fd40bf4740dc21a",
         'q': word,
-        'fq': 'news_desk:("Automobiles" "Business" "Cars" "Culture" "Dining" "Editorial" "Education" "Financial" "Foreign" "Health" "Jobs" "Market Place" "Metro" "Metropolitan" "National" "Opinion" "Personal Investing" "Politics" "Retirement" "Science" "Small Business" "Society" "Sunday Business" "Technology" "Travel" "U.S." "Universal" "Vacation" "Wealth" "Week in Review" "Working" "Workplace" "World" "Your Money") AND headline.search:(\""' + word + '\"")',
+        'fq': 'news_desk:("Automobiles" "Business" "Cars" "Culture" "Dining" "Editorial" "Education" "Financial" "Foreign" "Health" "Jobs" "Market Place" "Metro" "Metropolitan" "National" "Opinion" "Personal Investing" "Politics" "Retirement" "Science" "Small Business" "Society" "Sunday Business" "Technology" "Travel" "U.S." "Universal" "Vacation" "Wealth" "Week in Review" "Working" "Workplace" "World" "Your Money") AND body.search:(\""' + word + '\"")',
         'begin_date': '20160710',
         'end_date': '20160723',
         'sort': 'newest',
@@ -58,7 +49,7 @@ module.exports = {
     })
   },
 
-  getFromAPI: function(req,res) {
+  getFromNewsAPI: function(req,res) {
 
     const keywords = ['consumer spending', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'panic'];
       
@@ -75,7 +66,7 @@ module.exports = {
       qs: {
         'api-key': "cd2a0ddca6c645b38fd40bf4740dc21a",
         'q': keyword,
-        'fq': 'news_desk:("Automobiles" "Business" "Cars" "Culture" "Dining" "Editorial" "Education" "Financial" "Foreign" "Health" "Jobs" "Market Place" "Metro" "Metropolitan" "National" "Opinion" "Personal Investing" "Politics" "Retirement" "Science" "Small Business" "Society" "Sunday Business" "Technology" "Travel" "U.S." "Universal" "Vacation" "Wealth" "Week in Review" "Working" "Workplace" "World" "Your Money") AND headline.search:(\""' + keyword + '\"") OR body.search:(\""' + keyword + '\"")',
+        'fq': 'news_desk:("Automobiles" "Business" "Cars" "Culture" "Dining" "Editorial" "Education" "Financial" "Foreign" "Health" "Jobs" "Market Place" "Metro" "Metropolitan" "National" "Opinion" "Personal Investing" "Politics" "Retirement" "Science" "Small Business" "Society" "Sunday Business" "Technology" "Travel" "U.S." "Universal" "Vacation" "Wealth" "Week in Review" "Working" "Workplace" "World" "Your Money") AND body.search:(\""' + keyword + '\"")',
         'begin_date': '20160101',
         'end_date': '20160723',
         'sort': 'newest',
@@ -85,12 +76,10 @@ module.exports = {
 
       //Once retrieved from API request, create entry in DB
       if(err) {
-        console.log('request failure');
-        reject(err);
+        console.log('Request failure:');
+        console.error(err);
       } else {
-        console.log('keyword is:',keyword);
         body = JSON.parse(body);
-
         body['keyword'] = keyword;
         News.update({keyword: keyword}, {
           data: body.response.docs,
@@ -137,6 +126,24 @@ module.exports = {
         });
       })
     };
+
+
+    // News.find().exec()
+    // .then(function(news) {
+    //   console.log('searching database:', news);
+    //   var results = { keyword: news.keyword };
+    //   var n = news[9].data.reduce(function(prev, cur) {
+    //     return prev += '. ' + cur.headline.main;
+    //   }, '');
+    //   results = {
+    //     string: n,
+    //     keyword: news[9].keyword
+    //   } 
+    //   res.send(results);
+    // })
+    // .catch(function(err) {
+    //   console.error(err);
+    // })
 
     News.find().exec()
       .then(function(news) {

@@ -28,15 +28,16 @@ class SentimentTrends extends Component {
       <section className="sentiments">
         <div className="center-content">
           <div className="row">
-            <h2>Consumer/Economic Sentiment - News in Past Two Months</h2>
+            <h2> 2016</h2>
             <div className="col-md-8">
               <div className="sentiment-chart">
+              {console.log(this.props.sentimentData)}
                 <CentralAxis
                   data={this.props.sentimentData}
-                  x={'newsTopic'}
+                  x={'keyword'}
                   y={'sentimentScore'}
-                  height={300}
-                  width={500}
+                  height={400}
+                  width={600}
                 />
               </div>
             </div>

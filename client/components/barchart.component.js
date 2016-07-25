@@ -6,64 +6,52 @@ class CentralAxis extends Component {
     super(props)
   }
 
+  sortedList() {
+    let data = this.props.data.sort(function(a,b) {
+      return a.sentimentScore > b.sentimentScore ? 1 : -1;
+    })
+    return data;
+  }
+
   render() {
     return (
-      // <div className='bar-chart'>
-      <svg width={500} height={350}>
-        <VictoryChart horizontal
-          height={350}
-          width={500}
-          padding={40}
-          domain={{x:[-1.2,1.2], y:[0,7]}}
-          style={{
-            data: {width: 50},
-            labels: {fontSize: 12}
-          }}
-          padding={{
-            top: 20,
-            bottom: 60,
-            left: 20,
-            right: 20
-          }}
-          domainPadding={{x: 15}}>
-          <VictoryAxis
-            label="Sentiment"
-            orientation="bottom"/>
-          <VictoryAxis 
-            domain={{y:[0, 5]}}
-            tickValues={[-1, -0.75, -0.5, -.25, 0, .25, .50, .75, 1]}
-            style={{
-              labels: {fontSize: 9},
-              grid: {
-                stroke: "grey",
-                strokeWidth: 1
-              },
-              axis: {stroke: "transparent"},
-              ticks: {stroke: "transparent"}
-            }}/>
-          <VictoryBar horizontal
-            style={{
-              data: {
-                width: 25,
-                labels: { padding: 5, fontSize:10 },
-                fill: (data) => data.y > 0 ?
-                  "gold" : "blue"
-              }
-            }}
-            data={this.props.data.map(function(obj, idx) {
-                
+      <div className='bar-chart'>
+      <svg width={600} height={400}>
+       <VictoryChart horizontal
+         height={400}
+         width={500}
+         domainPadding={{x:100}}
+         padding={{
+           top: 40,
+           bottom: 40,
+           left: 40,
+           right: 40
+         }}
+         domainPadding={{x: 15}}>
+        <VictoryAxis />
+         <VictoryBar horizontal
+           style={{
+             data: {
+               width: 20,
+               labels: {padding: 5, fontSize: 10},
+               fill: (data) => data.y > 0 ?
+                 "gold" : "blue"
+             }
+           }}
+           data={this.sortedList().map(function(obj, idx) {
+              console.log('obj inside props data is:',obj)
+              if (obj.keyword !== 'panic')
               return {
                 x: 1+idx,
                 y: + obj.sentimentScore,
-                label: obj.newsTopic.toUpperCase()
+                label: obj.keyword.toUpperCase()
               }
-            })}
-          />   
-        </VictoryChart>
+            })}/>   
+       </VictoryChart>
 
       </svg>
 
-      // </div>
+      </div>
     );
   }
 }
