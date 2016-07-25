@@ -24,7 +24,7 @@ class LineChart extends Component {
     return (
 
       <div>
-        <h3>Google Searches for {this.props.keyword}</h3>
+        <h4><strong>Google searches for "{this.props.keyword}" 2004 - present</strong></h4>
         <svg width={this.props.width} height={this.props.height}>
 
           <VictoryLine

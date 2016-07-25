@@ -19,7 +19,7 @@ header {
   border-bottom: 1px solid #cecaca;
   background: #fff;
   padding: 25px 0 0;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 header h1 {
   padding: 0;
@@ -40,6 +40,8 @@ section {
 
 .center-content {
   margin: 0 auto;
+  max-width: 1240px;
+  width: 100%;
 }
 
 .footer-head {
@@ -81,16 +83,34 @@ section {
   min-height: 300px;
 }
 .google-trends .google-summary {
-  padding: 0 0 0 50px;
+  padding: .5em;
+}
+
+.google-trends-nav {
+  margin: 0 2em 0 2em;
 }
 
 .header-image {
   width: 100%;
 }
 
+.infobox {
+  margin: 1em;
+}
+
 .main-content {
   background: #f5ead6;
   padding: 2em 3em 2em 3em;
+}
+
+.quote {
+  background-color: #fff;
+  font-family: 'georgia', 'times';
+  font-size: 2em;
+  font-weight: 500;
+  font-style: italic;
+  margin-bottom: 2em;
+  padding: 1em;
 }
 
 .results-copy {
@@ -133,7 +153,13 @@ section {
 .stand-out {
   font-size: 30px;
   color: rgba(228, 115, 115, 0.9);
-  font-weight: 700;
+  font-weight: 600;
+}
+
+.stand-out-white {
+  font-size: 30px;
+  color: #fff;
+  font-weight: 600;
 }
 
 /*# sourceMappingURL=styles.css.map */
