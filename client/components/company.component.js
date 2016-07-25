@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GoogleTrends from './googletrends.component';
+import LineChart from './linechart.component';
 import SentimentTrends from './sentiment.component';
 import TwitterChart from './twitter.component';
 
@@ -9,6 +9,11 @@ class CompanyComponent extends Component {
   }
 
   render() {
+    if (!this.props.companyGoogleTrendsData) {
+      return (
+        <div>Loading Google Trends data...</div>
+      );
+    }
 
     return (
       <div className="container">
@@ -16,21 +21,19 @@ class CompanyComponent extends Component {
 
         <div className="row">
           <div className="section-headline col-md-12">
-            <h3 className="ta-center"><i className="fa fa-twitter" aria-hidden="true"></i>What's Tweeting</h3>
+            <h3 className="ta-center">{this.props.currentCompany}</h3>
           </div>
         </div>
 
-        <div className="row">
-          <div className="section-headline col-md-12">
-            <h3 className="ta-center">What's Being Searched</h3>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="section-headline col-md-12">
-            <h3 className="ta-center">Market Sentiment</h3>
-          </div>
-        </div>
+        <LineChart
+          data={this.props.companyGoogleTrendsData.searchVolume}
+          keyword={this.props.companyGoogleTrendsData.keyword}
+          x={'date'}
+          y={'volume'}
+          height={500}
+          width={800}
+          color={'red'}
+        />
 
       </div>
     );

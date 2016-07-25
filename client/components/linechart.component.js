@@ -11,11 +11,11 @@ class LineChart extends Component {
   }
 
   computeDomain() {
-    let volumeArray = this.props.data.map(item => {
+    var volumeArray = this.props.data.map(item => {
       return item['volume'];
     });
-    let max = Math.max.apply(null, volumeArray);
-    let min = Math.min.apply(null, volumeArray);
+    var max = Math.max.apply(null, volumeArray);
+    var min = Math.min.apply(null, volumeArray);
 
     return [min, max];
   }
@@ -30,15 +30,16 @@ class LineChart extends Component {
           <VictoryLine
             data={this.props.data}
             x={this.props.x}
-            y={this.props.y}
+            y={(data) => data.volume}
             label={this.props.keyword}
-            standalone={false}
             height={this.props.height}
+            interpolation={'cardinal'}
             width={this.props.width}
+            standalone={false}
             style={{
               data: {
                 stroke: this.props.color,
-                strokeWidth: 2
+                strokeWidth: 3
               }
             }}
           />

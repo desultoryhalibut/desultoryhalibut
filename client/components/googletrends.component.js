@@ -25,7 +25,7 @@ class GoogleTrends extends Component {
       keyword={this.props.googleTrendsData[index].keyword}
       x={'date'}
       y={'volume'}
-      height={300}
+      height={400}
       width={600}
       color={color}
     />;
@@ -92,17 +92,14 @@ class GoogleTrends extends Component {
                 <h3 className="card-header red white-text">What are we looking at?</h3>
                 <div className="card-block">
                     <h4 className="card-title">Google search trends can help you get a pulse on economic and market indicators</h4>
-                    <p className="card-text">
-                      <ul>
-                        <li><strong>Cars & Restaurants</strong>: Pulse on consumer spending</li>
-                        <li><strong>Real Estate Agent</strong>: Pulse on housing market demand</li>
-                        <li><strong>Unemployment</strong>: Pulse on jobs</li>
-                        <li><strong>Inflation</strong>: Pulse on inflation</li>
-                        <li><strong>Dow Jones</strong>: Pulse on market volatility</li>
-                        <li><strong>Hedge & Panic</strong>: Pulse on market fear</li>
-                      </ul>
-                    </p>
-
+                    <ul className="card-text">
+                      <li><strong>Cars & Restaurants</strong>: Pulse on consumer spending</li>
+                      <li><strong>Real Estate Agent</strong>: Pulse on housing market demand</li>
+                      <li><strong>Unemployment</strong>: Pulse on jobs</li>
+                      <li><strong>Inflation</strong>: Pulse on inflation</li>
+                      <li><strong>Dow Jones</strong>: Pulse on market volatility</li>
+                      <li><strong>Hedge & Panic</strong>: Pulse on market fear</li>
+                    </ul>
                 </div>
             </div>
           </div>

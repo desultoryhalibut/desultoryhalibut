@@ -105,12 +105,12 @@ section {
 
 .quote {
   background-color: #fff;
-  font-family: 'georgia', 'times';
   font-size: 2em;
   font-weight: 500;
   font-style: italic;
   margin-bottom: 2em;
   padding: 1em;
+  text-align: center;
 }
 
 .results-copy {
