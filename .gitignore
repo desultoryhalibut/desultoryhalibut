@@ -1,3 +1,4 @@
 node_modules
 www/bundle.js
 server/config/config.js
+client/components/.DS_Store

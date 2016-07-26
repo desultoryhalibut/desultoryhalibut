@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var nSentimentSchema = new Schema({
   newsTopic: {type: String},
   relevance: {type: Number},
-  sentimentScore: {type: String},
+  sentimentScore: {type: Number},
   type: {type: String},
 })
 

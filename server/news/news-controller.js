@@ -69,7 +69,6 @@ module.exports = {
         console.log('getCompaniesFromNewsAPI search on',companies[i])
         module.exports.addToDB(companies[i]);
       }
-
   },
 
   addToDB: function(keyword) {
@@ -100,6 +99,7 @@ module.exports = {
           hits: body.response.meta.hits,
           keyword: body.keyword
         }, function(err, done) {
+
           if (err)
             console.error(err);
           else
@@ -107,6 +107,7 @@ module.exports = {
         });
       }
     })
+
   },
 
   inputSentiment: function(req, res) {  //relative route from api/news-model
@@ -122,7 +123,6 @@ module.exports = {
           string: n,
           keyword: news[i].keyword
         }
-
       }
       res.send(strings);
     })
@@ -145,27 +145,11 @@ module.exports = {
         });
       })
     };
-    // News.find().exec()
-    // .then(function(news) {
-    //   console.log('searching database:', news);
-    //   var results = { keyword: news.keyword };
-    //   var n = news[9].data.reduce(function(prev, cur) {
-    //     return prev += '. ' + cur.headline.main;
-    //   }, '');
-    //   results = {
-    //     string: n,
-    //     keyword: news[9].keyword
-    //   }
-    //   res.send(results);
-    // })
-    // .catch(function(err) {
-    //   console.error(err);
-    // })
+
 
     News.find().exec()
       .then(function(news) {
         for (var i = 0; i < news.length; i++) {
-          console.log("news[i].data:",news[i].data);
           var paramsSentiment = {
             text: news[i].data.reduce(function(prev, cur) {
               return prev += '. ' + cur.headline.main;
@@ -185,7 +169,8 @@ module.exports = {
           .catch(function(err) {
             console.error(err);
           })
-        }
+        } 
       })
     }
   };
+

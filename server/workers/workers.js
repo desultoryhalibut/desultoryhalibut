@@ -17,6 +17,7 @@ const KEYWORDS = ['car', 'real estate agent', 'inflation', 'restaurant', 'unempl
  * @param  {[Array]} trendsData [description]
  * @return {[Array]}            [description]
  */
+
 function reformatTrendsData(trendsData) {
    return trendsData.map(item => {
      for (var key in item) {
@@ -27,6 +28,7 @@ function reformatTrendsData(trendsData) {
      }
    });
 }
+
 
  /**
   * function QueryGoogleTrends - Helper function to seed data from GoogleTrends API to database
@@ -53,23 +55,22 @@ function queryGoogleTrends(key, googleTrendResults) {
       }
     });
 }
-
 /**
  * function googleTrends.trendData - Updates database for GoogleTrends Summary keywords for dashboard view
  * @param  {[Array]} KEYWORDS [Array of keywords]
  */
 
-googleTrends.trendData(KEYWORDS)
-  .then(function(results) {
+// googleTrends.trendData(KEYWORDS)
+//   .then(function(results) {
 
-    KEYWORDS.forEach((key, index) => {
-      queryGoogleTrends(key, results[index]);
-    });
+//     KEYWORDS.forEach((key, index) => {
+//       queryGoogleTrends(key, results[index]);
+//     });
 
-  })
-  .catch(function(err) {
-    console.error('Error updating Google Trends ', err);
-  });
+//   })
+//   .catch(function(err) {
+//     console.error('Error updating Google Trends ', err);
+//   });
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -94,7 +95,6 @@ googleTrends.trendData(KEYWORDS)
     };
 
     const paramsSentiment = {
-
       targets: ['inflation','unemployment','real estate', 'acquisition','restaurants','dow jones','economy']
     };
 
@@ -121,44 +121,3 @@ googleTrends.trendData(KEYWORDS)
       })
     };
 
-    //Grab data from alchemy news API using target keywords
-    alchemyGetNews(paramsNews)
-      .then(function(news) {
-        const newsArray = news.result.docs;
-        newsArray = newsArray.map(function(val) {
-          return {
-            timestamp: helper.timeConverter(val.timestamp),
-            title: val.source.enriched.url.title
-          }
-        });
-        newsString = newsArray.reduce(function(prev, cur) {
-          return prev += '. ' + cur.title;
-        }, '');
-        paramsSentiment.text = newsString;
-        //Feed alchemy news data into sentiment API
-        alchemyGetSentiment(paramsSentiment)
-        .then(function(sentiment) {
-          var sentimentArr = sentiment.results.map(function(obj) {
-            return {
-              newsTopic: obj.text,
-              sentimentScore: obj.sentiment.score,
-              type: obj.sentiment.type
-              // relevance: obj.relevance
-            }
-          })
-          console.log('inside worker. sentiment arr:',sentimentArr)
-
-          // for (var i = 0; i < sentimentArr; i++) {
-          //   NSentiment.findOneAndUpdate({newsTopic: sentimentArr.newsTopic}, {sentimentScore: sentimentArr.sentimentScore}, {new: true, upsert: true})
-          // }
-          for (var i = 0; i < sentimentArr; i++) {
-            NSentiment.findOneAndUpdate({newsTopic: sentimentArr[i].newsTopic},
-              { $set: { sentimentScore: sentimentArr[i].sentimentScore }},
-              { new: true,
-                upsert:true })
-          }
-        })
-        .catch(function(err) {
-          console.log(err);
-        })
-      })
