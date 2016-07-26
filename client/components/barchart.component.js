@@ -6,7 +6,7 @@ class CentralAxis extends Component {
     super(props);
 
     this.state = {
-      x: null
+      sentimentData: null
     }
   }
 
@@ -25,7 +25,30 @@ class CentralAxis extends Component {
     return data;
   }
 
+    filterBy(criteria) {
+      //by company, by economic indicators, by company
+
+      const economicInd = ['car', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'consumer spending']
+      if (criteria === 'company') {
+        var data = this.props.data.filter(function(obj) {
+          return (economicInd.indexOf(obj.keyword) === -1)
+        })
+      } else if (criteria === 'economic') {
+        var data = this.props.data.filter(function(obj) {
+          return (economicInd.indexOf(obj.keyword) > -1)
+        });
+      } else {
+        //need to insert API call to server to get from News database
+        var data = this.props.data.filter(function(item) {
+          return item.keyword === criteria;
+        });
+      }
+      return data;
+    }
+
   render() {
+    var topic = this.props.currentCompany || 'economic';
+    console.log("This is the topic: ",topic, this.props.currentCompany );
     return (
 
       <div className='bar-chart'>
@@ -43,8 +66,7 @@ class CentralAxis extends Component {
            right: 40
          }}
          domainPadding={{x: 15}}
-        
-        >
+
         <VictoryAxis 
           
           orientation='bottom'
@@ -53,7 +75,7 @@ class CentralAxis extends Component {
             ticks: {stroke: "transparent"}
           }}
         />
-         <VictoryBar horizontal 
+         <VictoryBar horizontal
            style={{
              data: {
                width: 20,
@@ -63,7 +85,8 @@ class CentralAxis extends Component {
              }
            }}
 
-           data={this.sortedList(this.filterByCompany()).map(function(obj, idx) {
+
+           data={this.sortedList(this.filterBy(topic)).map(function(obj, idx) {
               if (obj.keyword !== 'panic') {
                 return {
                   x: 1+idx,
@@ -76,6 +99,7 @@ class CentralAxis extends Component {
               }
 
             })}
+
           /> 
 
        </VictoryChart>

@@ -10,22 +10,24 @@ export default class AppComponent extends Component {
     this.state = {
       currentCompany: null,
       companyGoogleTrendsData: null,
-      isSummary: true
+      isSummary: true,
+      sentimentData : null,
+      twitterData: null
     }
     this.selectCompany = this.selectCompany.bind(this);
+    this.fetchTweets = this.fetchTweets.bind(this);
+    this.getNews = this.getNews.bind(this);
   }
 
   selectCompany(company) {
-    this.setState({currentCompany: company, isSummary: false});
-    alert(`I selected this company ${company}`);
+    this.setState({currentCompany: company.toLowerCase(), isSummary: false});
 
-    // fetch company specific Google Trends data
+    //fetch company specific Google Trends data directly from API
     fetch('api/googletrends/' + company, {method: 'GET'})
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.log('Company Google Trends Data ', data);
         this.setState({companyGoogleTrendsData: data});
       })
       .catch((err) => {
@@ -33,12 +35,48 @@ export default class AppComponent extends Component {
       });
   }
 
+
+  fetchTweets () {
+    var self = this;
+      fetch('api/twitter', {method: 'GET'})
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log('SETTINGSTATE', data);
+        this.setState({twitterData: data}).bind(self);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+
+  getNews() {
+  fetch('api/news', {method: 'GET'})
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      this.setState({sentimentData: data});
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+  componentWillMount() {
+    this.getNews();
+    setInterval(this.fetchTweets, 5000);
+  }
+
   render() {
-    let partial;
+    var partial;
     if (this.state.isSummary) {
-      partial = <SummaryComponent />
+      partial = <SummaryComponent twitterData={this.state.twitterData} sentimentData={this.state.sentimentData} />
     } else {
-      partial = <CompanyComponent />
+      partial = <CompanyComponent companyGoogleTrendsData={this.state.companyGoogleTrendsData} currentCompany={this.state.currentCompany} twitterData={this.state.twitterData} sentimentData={this.state.sentimentData} />
     }
 
     return (
@@ -48,8 +86,9 @@ export default class AppComponent extends Component {
         </header>
 
         <div className="main-content z-depth-5">
-
+          <h1><strong>Mainstreet INSIGHTS</strong></h1>
           {partial}
+
         </div>
         <Footer />
       </div>

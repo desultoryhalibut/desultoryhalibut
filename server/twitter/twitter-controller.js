@@ -43,15 +43,11 @@ for(topic in channels) {
   var channel = 'channels/' + topic;
   var tag = topic;
 
-
- // BOOOOOOM!!!!
   stream.on(channel, function() {
     var tag = topic;
     return saveTweet.bind(this, tag);
   }());
 }
-
-
 
 module.exports = {
   get: function(req, res) {

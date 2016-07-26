@@ -25,7 +25,7 @@ class GoogleTrends extends Component {
       keyword={this.props.googleTrendsData[index].keyword}
       x={'date'}
       y={'volume'}
-      height={300}
+      height={400}
       width={600}
       color={color}
     />;
@@ -71,25 +71,16 @@ class GoogleTrends extends Component {
           <quote>"Research published today in Nature Scientific Reports finds that <span className="stand-out">Google search behaviour</span> is not only a clear indicator of movements in the market; it also <span className="stand-out">gives insight into the likely future behaviour of economic actors</span>."</quote> <small>~ Nature.com: Quantifying Trading Behavior in Financial Markets Using Google Trends</small>
         </div>
         <div className="row">
-          <div className="col-md-8">
-            <nav className="google-trends-nav">
-              <button onClick={this.handleClick} value="car" className="btn btn-warning btn-rounded waves-effect">Car</button>
-              <button onClick={this.handleClick} value="dow jones" className="btn btn-warning btn-rounded waves-effect">Dow Jones</button>
-              <button onClick={this.handleClick} value="hedge" className="btn btn-warning btn-rounded waves-effect">Hedge</button>
-              <button onClick={this.handleClick} value="panic" className="btn btn-warning btn-rounded waves-effect">Panic</button>
-              <button onClick={this.handleClick} value="unemployment" className="btn btn-warning btn-rounded waves-effect">Unemployment</button>
-              <button onClick={this.handleClick} value="real estate agent" className="btn btn-warning btn-rounded waves-effect">Real Estate Agent</button>
-              <button onClick={this.handleClick} value="inflation" className="btn btn-warning btn-rounded waves-effect">Inflation</button>
-              <button onClick={this.handleClick} value="restaurant" className="btn btn-warning btn-rounded waves-effect">Restaurant</button>
-            </nav>
 
+          <div className="col-md-7">
             <article>
               {partial}
             </article>
           </div>
-          <div className="col-md-4">
+
+          <div className="col-md-5 info-google">
             <div className="card">
-                <h3 className="card-header red white-text">What are we looking at?</h3>
+                <h3 className="card-header white-text">What are we looking at?</h3>
                 <div className="card-block">
                     <h4 className="card-title">Google search trends can help you get a pulse on economic and market indicators</h4>
                     <p className="card-text">
@@ -106,21 +97,35 @@ class GoogleTrends extends Component {
                 </div>
             </div>
           </div>
+
         </div>
+
         <div className="row">
-          <div className="card card-danger text-xs-center z-depth-2 col-md-3 infobox">
+        <nav className="google-trends-nav">
+          <button onClick={this.handleClick} value="car" className="btn btn-warning btn-rounded waves-effect">Car</button>
+          <button onClick={this.handleClick} value="dow jones" className="btn btn-warning btn-rounded waves-effect">Dow Jones</button>
+          <button onClick={this.handleClick} value="hedge" className="btn btn-warning btn-rounded waves-effect">Hedge</button>
+          <button onClick={this.handleClick} value="panic" className="btn btn-warning btn-rounded waves-effect">Panic</button>
+          <button onClick={this.handleClick} value="unemployment" className="btn btn-warning btn-rounded waves-effect">Unemployment</button>
+          <button onClick={this.handleClick} value="real estate agent" className="btn btn-warning btn-rounded waves-effect">Real Estate Agent</button>
+          <button onClick={this.handleClick} value="inflation" className="btn btn-warning btn-rounded waves-effect">Inflation</button>
+          <button onClick={this.handleClick} value="restaurant" className="btn btn-warning btn-rounded waves-effect">Restaurant</button>
+        </nav>
+          <div className="card card-danger text-xs-center z-depth-2 col-md-4 infobox">
             <div className="card-block">
-              <p className="white-text"><span className="stand-out-white">6% increase in searches for "restaurant" from May 2016 to June 2016</span></p>
+              <p className="white-text"><span className="stand-out-white">Consumer spending is growing stronger.  6% increase in searches for "restaurant" over last month.  14.7% increase in searches for "cars" over last 7 months.</span></p>
             </div>
           </div>
-          <div className="card card-warning text-xs-center z-depth-2 col-md-3 infobox">
+
+          <div className="card card-warning text-xs-center z-depth-2 col-md-4 infobox">
             <div className="card-block">
-              <p className="white-text"><span className="stand-out-white">6% increase in searches for "restaurant" from May 2016 to June 2016</span></p>
+              <p className="white-text"><span className="stand-out-white">Housing market still positive.  27% increase in searches for "real estate agent" last 9 months.</span></p>
             </div>
           </div>
-          <div className="card card-info text-xs-center z-depth-2 col-md-3 infobox">
+
+          <div className="card card-info text-xs-center z-depth-2 col-md-4 infobox">
             <div className="card-block">
-              <p className="white-text"><span className="stand-out-white">6% increase in searches for "restaurant" from May 2016 to June 2016</span></p>
+              <p className="white-text"><span className="stand-out-white">We are less scared or interested in inflation.  24% decrease in searches for "inflation" over last 7 months.</span></p>
             </div>
           </div>
         </div>

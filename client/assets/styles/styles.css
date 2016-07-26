@@ -1,4 +1,5 @@
 @import "https://fonts.googleapis.com/css?family=Open+Sans";
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
 @import url(bootstrap.min.css);
 @import url(mdb.min.css);
 * {
@@ -6,12 +7,16 @@
 }
 
 body {
-  background: #cecaca;
+  background: #fff;
   font-size: 14px;
 }
 
+.container-fluid {
+  padding: 0;
+}
+
 footer {
-  background: rgba(81, 85, 87, 0.85);
+  background: #fff;
   min-height: 150px;
 }
 
@@ -95,20 +100,21 @@ section {
 }
 
 .infobox {
-  margin: 1em;
+  margin: 40px 0;
 }
 
 .main-content {
-  background: #f5ead6;
+  background: #fff;
   padding: 2em 3em 2em 3em;
+  width: 1240px;
+  margin: 0 auto;
 }
 
 .quote {
   background-color: #fff;
-  font-family: 'georgia', 'times';
+  font-family: "Open Sans", sans-serif;
   font-size: 2em;
   font-weight: 500;
-  font-style: italic;
   margin-bottom: 2em;
   padding: 1em;
 }
@@ -122,15 +128,42 @@ section {
   min-height: 300px;
 }
 
-.section-headline {
+.btn-containers {
+  margin: 0 auto;
+  width: 810px;
+}
+.btn-containers .btn {
+  width: 160px;
+  height: 45px;
+  margin-right: 10px;
   background: rgba(237, 174, 64, 0.9);
+  border-radius: 3px;
+  margin-right: 35px;
+}
+
+.google-trends-nav .btn {
+  border-radius: 3px;
+}
+
+.info-google {
+  margin-top: 60px;
+}
+.info-google .card-header {
+  background: #5bc0de;
+}
+
+.section-headline {
   color: #fff;
   padding: 2em;
+  background: #16aefd;
+  margin-top: 60px;
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
+  border-bottom: 3px solid #0c7ae2;
 }
 .section-headline h3 {
-  line-height: 0.85714285714286em;
-  font-size: 3em;
-  font-weight: 400;
+  font-size: 24px;
+  font: 400 24px/0.85714em "Droid Sans", sans-serif;
   text-transform: uppercase;
 }
 
@@ -160,6 +193,16 @@ section {
   font-size: 30px;
   color: #fff;
   font-weight: 600;
+}
+
+.SImg {
+  height: 300px;
+  margin-top: 20px;
+  background: url("../img/Market-Sentiment.png") no-repeat center 0;
+}
+
+.footer {
+  display: none !important;
 }
 
 /*# sourceMappingURL=styles.css.map */

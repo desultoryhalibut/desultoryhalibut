@@ -6,8 +6,6 @@ const GoogleTrendsController = require('./google-trends.controller');
 
 GoogleTrendsRouter.get('/', GoogleTrendsController.get);
 
-
-GoogleTrendsRouter.get('/googletrends/*', GoogleTrendsController.getCompany);
-
+GoogleTrendsRouter.get('/*', GoogleTrendsController.getCompany);
 
 module.exports = GoogleTrendsRouter;

@@ -26,10 +26,10 @@ module.exports = {
       console.error(err);
     })
   },
-  
+
   searchAPI: function(req, res) {
     var word = req.params.search;
-    
+
     request.get({
       url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
       qs: {
@@ -42,7 +42,7 @@ module.exports = {
         'fl': 'web_url,snippet,headline,pub_date,type_of_material'
       },
     }, function(err, response, body) {
-      if (err) 
+      if (err)
         console.error(err);
       else
         res.send(body);
@@ -51,25 +51,24 @@ module.exports = {
    getFromNewsAPI: function(req,res) {
 
     const keywords = ['consumer spending', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'panic'];
-      
+
       //Loop through to do a separate key word search on news articles within the past year
       for (var i = 0; i < keywords.length; i++) {
         module.exports.addToDB(keywords[i]);
       }
-  
+
   },
- 
+
   getCompaniesFromNewsAPI: function(req,res) {
     console.log('getCompaniesFromNewsAPI RUNNING');
 
-    const companies = ['nintendo', 'disney', 'ford', 'google', 'gilead'];
+    const companies = ['nintendo', 'disney', 'ford', 'google'];
 
       //Loop through to do a separate key word search on news articles within the past year
       for (var i = 0; i < companies.length; i++) {
         console.log('getCompaniesFromNewsAPI search on',companies[i])
         module.exports.addToDB(companies[i]);
       }
-  
   },
 
   addToDB: function(keyword) {
@@ -100,14 +99,16 @@ module.exports = {
           hits: body.response.meta.hits,
           keyword: body.keyword
         }, function(err, done) {
-          if (err) 
+
+          if (err)
             console.error(err);
           else
             console.log('saved in db',done);
         });
       }
     })
-  }, 
+
+  },
 
   inputSentiment: function(req, res) {  //relative route from api/news-model
     News.find().exec()
@@ -121,8 +122,7 @@ module.exports = {
         results = {
           string: n,
           keyword: news[i].keyword
-        } 
-
+        }
       }
       res.send(strings);
     })
@@ -145,28 +145,12 @@ module.exports = {
         });
       })
     };
-    // News.find().exec()
-    // .then(function(news) {
-    //   console.log('searching database:', news);
-    //   var results = { keyword: news.keyword };
-    //   var n = news[9].data.reduce(function(prev, cur) {
-    //     return prev += '. ' + cur.headline.main;
-    //   }, '');
-    //   results = {
-    //     string: n,
-    //     keyword: news[9].keyword
-    //   } 
-    //   res.send(results);
-    // })
-    // .catch(function(err) {
-    //   console.error(err);
-    // })
+
 
     News.find().exec()
       .then(function(news) {
         for (var i = 0; i < news.length; i++) {
-          console.log("news[i].data:",news[i].data);
-          let paramsSentiment = {
+          var paramsSentiment = {
             text: news[i].data.reduce(function(prev, cur) {
               return prev += '. ' + cur.headline.main;
             }, ''),
@@ -189,3 +173,4 @@ module.exports = {
       })
     }
   };
+

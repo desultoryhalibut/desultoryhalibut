@@ -44,8 +44,8 @@ describe('API Tests', function() {
   });
 
 
-  describe ('GET /api/finance', function() {
-    it('should list ALL finance data on /api/finance GET', function(done) {
+  describe ('GET /api/googletrends', function() {
+    it('should list ALL googleTrends data on /api/googletrends GET', function(done) {
       chai.request(app)
         .get('/api/news')
         .end(function(err, res){

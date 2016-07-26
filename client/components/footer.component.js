@@ -4,7 +4,7 @@ const Footer = function(props) {
 
   return (
     <div>
-      <div className="footer-head red">
+      <div className="footer-head">
       </div>
       <footer className="footer">
         Mainstreet Footer

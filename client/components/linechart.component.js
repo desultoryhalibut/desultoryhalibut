@@ -30,15 +30,16 @@ class LineChart extends Component {
           <VictoryLine
             data={this.props.data}
             x={this.props.x}
-            y={this.props.y}
+            y={(data) => data.volume}
             label={this.props.keyword}
-            standalone={false}
             height={this.props.height}
+            interpolation={'cardinal'}
             width={this.props.width}
+            standalone={false}
             style={{
               data: {
                 stroke: this.props.color,
-                strokeWidth: 2
+                strokeWidth: 3
               }
             }}
           />
