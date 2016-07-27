@@ -93,12 +93,11 @@ class SentimentTrends extends Component {
                 <h3 className="card-header red white-text">Company Details</h3>
                 <div className="card-block">
                   <h4 className='card-title'>
-                    {this.props.sentimentData[9].keyword.toUpperCase()}
+                    {this.props.sentimentData[9].keyword.toUpperCase()} </h4>
 
                 <h3 className="card-header red white-text">{ Tips }</h3>
                 <div className="card-block">
-                  <h4 className='card-title'> Buy on bad news, sell on good news
-                  </h4>
+                  <h4 className='card-title'> Buy on bad news, sell on good news  </h4>
                   <p className='card-text'>
                    <ul>
                      <li><strong>Why: </strong>Insiders tend to buy stocks in years when news sentiment is pessimistic (negative score)</li>
@@ -111,7 +110,7 @@ class SentimentTrends extends Component {
                   </p>
                 </div>
               </div>
-            </div>
+              </div>
 
             <div className="col-md-4">
               <div className="card">
