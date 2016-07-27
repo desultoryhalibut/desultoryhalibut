@@ -17,6 +17,13 @@ class CentralAxis extends Component {
     return data;
   }
 
+  filterByCompany() {
+    const economicInd = ['car', 'unemployment', 'inflation', 'real estate', 'acquisition', 'restaurants', 'dow jones', 'economy', 'panic', 'consumer spending']
+    let data = this.props.data.filter(function(obj) {
+      return (economicInd.indexOf(obj.keyword) === -1)
+    })
+    return data;
+  }
 
     filterBy(criteria) {
       //by company, by economic indicators, by company
@@ -60,9 +67,8 @@ class CentralAxis extends Component {
          }}
          domainPadding={{x: 15}}
 
-        >
-        <VictoryAxis
-
+        <VictoryAxis 
+          
           orientation='bottom'
           style={{
             axis: {stroke: "transparent"},
@@ -79,6 +85,7 @@ class CentralAxis extends Component {
              }
            }}
 
+
            data={this.sortedList(this.filterBy(topic)).map(function(obj, idx) {
               if (obj.keyword !== 'panic') {
                 return {
@@ -92,7 +99,8 @@ class CentralAxis extends Component {
               }
 
             })}
-          />
+
+          /> 
 
        </VictoryChart>
 

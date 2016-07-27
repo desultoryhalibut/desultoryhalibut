@@ -80,6 +80,7 @@ class SentimentTrends extends Component {
                   height={400}
                   width={600}
                   currentCompany={this.props.currentCompany}
+
                 />
               </div>
             </div>
@@ -88,10 +89,15 @@ class SentimentTrends extends Component {
 
             <div className="col-md-4">
               <div className="card">
+
+                <h3 className="card-header red white-text">Company Details</h3>
+                <div className="card-block">
+                  <h4 className='card-title'>
+                    {this.props.sentimentData[9].keyword.toUpperCase()} </h4>
+
                 <h3 className="card-header red white-text">{ Tips }</h3>
                 <div className="card-block">
-                  <h4 className='card-title'> Buy on bad news, sell on good news
-                  </h4>
+                  <h4 className='card-title'> Buy on bad news, sell on good news  </h4>
                   <p className='card-text'>
                    <ul>
                      <li><strong>Why: </strong>Insiders tend to buy stocks in years when news sentiment is pessimistic (negative score)</li>
@@ -104,25 +110,24 @@ class SentimentTrends extends Component {
                   </p>
                 </div>
               </div>
-            </div>
+              </div>
 
             <div className="col-md-4">
               <div className="card">
                 <h3 className="card-header red white-text">{this.props.sentimentData[0].keyword.toUpperCase() }</h3>
                 <div className="card-block">
                   <h4 className='card-title'>
+
                   </h4>
                   <p className='card-text'>
                    <ul>
                      <li><strong># Articles: </strong>{this.props.sentimentData[9].hits + '\n'}</li>
                      <li><strong>Sentiment Score: </strong>{this.props.sentimentData[9].sentimentScore + '\n'}</li>
-                     <li><strong>Headlines: </strong>{this.props.sentimentData[9].data[0].headline.print_headline + '\n' +
-                       this.props.sentimentData[9].data[1].headline.print_headline}
 
+                     <li><strong>Headlines: </strong>{this.props.sentimentData[9].data[0].headline.print_headline + '\n'}
+                     
                     </li>
                    </ul>
-
-
 
                   </p>
                 </div>

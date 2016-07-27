@@ -8,3 +8,6 @@ process.env['access_token_secret'] = 'myufOQRWeSnxkNzkWEA7iDHDjOAWUsK7nP9yqwVLKz
 // Watsom API
 process.env["url"] = "https://gateway-a.watsonplatform.net/calls";
 process.env["apikey"] = "4540bd58466714d5ce58cb036c554e86d9f72d68";
+
+// NY Times API
+process.env["api"] = "cd2a0ddca6c645b38fd40bf4740dc21a";
